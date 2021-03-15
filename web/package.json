@@ -1,0 +1,36 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@inertiajs/inertia": "^0.8.5",
+        "@inertiajs/inertia-vue": "^0.5.4",
+        "@mdi/font": "^5.9.55",
+        "autoprefixer": "^10.2.5",
+        "axios": "^0.21",
+        "deepmerge": "^4.2.2",
+        "laravel-mix": "^6.0.13",
+        "lodash": "^4.17.21",
+        "portal-vue": "^2.1.7",
+        "postcss": "^8.2.8",
+        "postcss-import": "^12.0.1",
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.32.8",
+        "sass-loader": "^10.1.1",
+        "vue": "^2.5.17",
+        "vue-loader": "^15.9.6",
+        "vue-template-compiler": "^2.6.10",
+        "webpack": "^5.25.0"
+    },
+    "dependencies": {
+        "material-design-icons-iconfont": "^6.1.0",
+        "vuetify": "^2.4.6"
+    }
+}

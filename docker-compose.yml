@@ -1,0 +1,25 @@
+version: '3'
+services:
+  larafy_web:
+    build: .
+    container_name: larafy_web
+    volumes:
+      - ./web:/var/www/html/larafy
+    ports:
+      - 8081:8081
+      - 3000:3000
+  larafy_db:
+    image: mariadb:latest
+    container_name: larafy_db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: larafy
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+      TZ: Asia/Tokyoa
+    volumes:
+    - ./db/data:/var/lib/mysql
+    - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    - ./db/sql:/docker-entrypoint-initdb.d
+    ports:
+    - 3306:3306
