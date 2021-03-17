@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\LogController;
+use App\Http\Controllers\Admin\AccountController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -24,6 +27,17 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+// 全ユーザ
+Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
+
+// 管理者以上
+Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/admin/log', [LogController::class, 'index'])->name('admin.log');
+    Route::get('/admin/account', [AccountController::class, 'index'])->name('admin.account');
+    Route::get('/admin/account/{id}', [AccountController::class, 'show'])->name('admin.account.show');
+});
