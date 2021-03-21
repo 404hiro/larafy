@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Response;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Log;
 
 class AccountController extends Controller
@@ -22,6 +23,7 @@ class AccountController extends Controller
         $accounts = User::join('roles', 'roles.id', '=', 'users.role_id')
             ->select('users.*', 'roles.role', 'roles.title as role_title')
             ->paginate(15)->toArray();
+
         return Inertia::render('Admin/Account/Index', ['accounts' => $accounts]);
     }
 
@@ -54,9 +56,10 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        Log::debug('デバッグメッセージ');
-        return Inertia::render('Admin/Account/Index', ['accounts' => $user]);
+        $account = User::join('roles', 'roles.id', '=', 'users.role_id')
+            ->select('users.*', 'roles.role', 'roles.title as role_title')
+            ->find($id);
+        return Inertia::render('Admin/Account/Show', ['account' => $account]);
     }
 
     /**
@@ -67,7 +70,15 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $account = User::join('roles', 'roles.id', '=', 'users.role_id')
+            ->select('users.*', 'roles.role', 'roles.title as role_title')
+            ->find($id);
+        $roles = Role::get()->pluck('title', "id")->toArray();
+        return Inertia::render(
+            'Admin/Account/Edit',
+            ['account' => $account, 'roles' => $roles]
+        );
     }
 
     /**

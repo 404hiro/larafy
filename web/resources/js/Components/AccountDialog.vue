@@ -32,21 +32,9 @@
             </v-col>
 
             <v-col cols="12" sm="6">
-              <v-autocomplete
-                :items="[
-                  'Skiing',
-                  'Ice hockey',
-                  'Soccer',
-                  'Basketball',
-                  'Hockey',
-                  'Reading',
-                  'Writing',
-                  'Coding',
-                  'Basejump',
-                ]"
-                label="Role"
-                multiple
-              ></v-autocomplete>
+              <v-autocomplete v-if="roles" :items="roles" label="Role" multiple>
+              </v-autocomplete>
+              {{ roles }}
             </v-col>
           </v-row>
         </v-container>
@@ -68,19 +56,15 @@ export default {
     dialog: false,
     form: null,
     account: null,
+    roles: null,
   }),
-  props: {
-    envs: {
-      type: Array,
-    },
-    app_name: String,
-  },
 
   methods: {
-    open(account = null) {
+    open(account = null, roles = null) {
       this.dialog = true;
       this.form = account;
       this.account = account;
+      this.roles = roles;
     },
   },
 };

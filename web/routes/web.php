@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
 // 管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/admin/log', [LogController::class, 'index'])->name('admin.log');
-    Route::get('/admin/account', [AccountController::class, 'index'])->name('admin.account');
-    Route::get('/admin/account/{id}', [AccountController::class, 'show'])->name('admin.account.show');
+    Route::get('/admin/logs', [LogController::class, 'index'])->name('admin.log');
+    Route::get('/admin/accounts', [AccountController::class, 'index'])->name('admin.account');
+    Route::get('/admin/accounts/{id}/edit', [AccountController::class, 'edit'])->name('admin.account.edit');
 });

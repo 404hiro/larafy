@@ -93,7 +93,7 @@ export default {
     drawer: null,
     account_menu: [
       {
-        title: "Users",
+        title: "Accounts",
         icon: "mdi-account-group",
         link: "admin.account",
       },

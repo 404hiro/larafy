@@ -37,21 +37,21 @@
                 <td>{{ moment(account.created_at) }}</td>
                 <td>{{ moment(account.updated_at) }}</td>
                 <td>
-                  <v-btn
+                  <inertia-link
+                    as="v-btn"
+                    :href="route('admin.account.edit', { id: account.id })"
                     icon
                     color="primary"
                     dark
-                    @click.stop="onClickOpen(account)"
                   >
                     <v-icon> mdi-pencil </v-icon>
-                  </v-btn>
+                  </inertia-link>
                 </td>
               </tr>
             </tbody>
           </template>
         </v-simple-table>
       </v-card-text>
-      <account-dialog ref="dialog" />
 
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -71,12 +71,10 @@
 </template>
 <script>
 import AdminLayout from "@/Layouts/AdminLayout";
-import AccountDialog from "@/Components/AccountDialog";
 
 export default {
   components: {
     AdminLayout,
-    AccountDialog,
   },
   props: ["accounts"],
 
@@ -95,11 +93,6 @@ export default {
     },
     getNumber: function (number) {
       this.$inertia.get("", { page: number });
-    },
-    async onClickOpen(account = null) {
-      if (account) {
-        this.$refs.dialog.open(account);
-      }
     },
   },
 };
