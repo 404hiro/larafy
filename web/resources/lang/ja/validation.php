@@ -145,6 +145,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        "email" => "メールアドレス",
+        "role" => "権限",
+        "name" => "名前",
+        "title" => "タイトル"
+    ],
 
 ];

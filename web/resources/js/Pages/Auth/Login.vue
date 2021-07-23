@@ -68,9 +68,9 @@
                     <v-row align="center" justify="end">
                       <v-btn
                         type="submit"
+                        :disabled="form.processing"
                         class="mt-2 mb-1"
                         :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
                         color="primary"
                         depressed
                         rounded

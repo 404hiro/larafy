@@ -20,9 +20,15 @@ class LogController extends Controller
         //ファイル名リスト取得
         $logFiles = array();
         $list = glob(storage_path('logs') . "/*");
+        //ファイル名のリストを取得
         foreach ($list as $file) {
             array_push($logFiles, ["title" => basename($file),  "link" => basename($file)]);
         }
+        //ファイル名をソート
+        foreach ((array) $logFiles as $key => $value) {
+            $sort[$key] = $value["title"];
+        }
+        array_multisort($sort, SORT_DESC, $logFiles);
         $fileName = "";
         if ($request->file) {
             if (file_exists(storage_path('logs') . "/" . $request->file)) {

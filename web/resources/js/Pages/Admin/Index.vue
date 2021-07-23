@@ -7,6 +7,8 @@
     </template>
     <v-card flat bordered>
       <v-card-title> {{ app_name }}</v-card-title>
+      <danger-button> Delete Account </danger-button>
+
       <v-card-text>
         <v-simple-table>
           <template v-slot:default>
@@ -24,10 +26,12 @@
 </template>
 <script>
 import AdminLayout from "@/Layouts/AdminLayout";
+import DangerButton from "@/Components/DangerButton";
 
 export default {
   components: {
     AdminLayout,
+    DangerButton,
   },
   props: {
     envs: {

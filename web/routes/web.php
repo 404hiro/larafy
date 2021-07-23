@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -27,7 +28,7 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
-// 全ユーザ
+// ログインユーザ
 Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return Inertia::render('Dashboard');
@@ -39,5 +40,8 @@ Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/admin/logs', [LogController::class, 'index'])->name('admin.log');
     Route::get('/admin/accounts', [AccountController::class, 'index'])->name('admin.account');
+    Route::get('/admin/accounts/{id}', [AccountController::class, 'show'])->name('admin.account.show');
     Route::get('/admin/accounts/{id}/edit', [AccountController::class, 'edit'])->name('admin.account.edit');
+    Route::post('/admin/accounts/{id}/edit', [AccountController::class, 'update'])->name('admin.account.update');
+    Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.role');
 });

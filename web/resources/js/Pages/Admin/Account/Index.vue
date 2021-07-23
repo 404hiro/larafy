@@ -1,11 +1,18 @@
 <template>
   <admin-layout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">Account</h2>
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        アカウント管理
+      </h2>
     </template>
+
+    <v-alert type="success" v-if="$page.props.flash.success">
+      {{ $page.props.flash.success }}</v-alert
+    >
+    <danger-button> Delete Account </danger-button>
     <v-card flat bordered>
       <v-card-title>
-        Account List
+        アカウント管理
         <v-spacer></v-spacer>
         <v-pagination
           v-model="page"
@@ -46,6 +53,15 @@
                   >
                     <v-icon> mdi-pencil </v-icon>
                   </inertia-link>
+                  <inertia-link
+                    as="v-btn"
+                    :href="route('admin.account.edit', { id: account.id })"
+                    icon
+                    color="red"
+                    dark
+                  >
+                    <v-icon> mdi-trash-can-outline </v-icon>
+                  </inertia-link>
                 </td>
               </tr>
             </tbody>
@@ -71,10 +87,12 @@
 </template>
 <script>
 import AdminLayout from "@/Layouts/AdminLayout";
+import DangerButton from "@/Components/DangerButton";
 
 export default {
   components: {
     AdminLayout,
+    DangerButton,
   },
   props: ["accounts"],
 

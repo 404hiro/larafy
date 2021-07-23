@@ -8,10 +8,10 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-
       <v-divider></v-divider>
-      <list-link :subheader="'ユーザー管理'" :items="account_menu" />
-      <list-link :subheader="'システム管理'" :items="system_menu" />
+      <drawer-menu :items="dashboard_menu" />
+      <drawer-menu :subheader="'ユーザー管理'" :items="account_menu" />
+      <drawer-menu :subheader="'システム管理'" :items="system_menu" />
     </v-navigation-drawer>
 
     <v-app-bar app color="#6777ef" flat dark dense class="mx-0">
@@ -77,6 +77,7 @@
             <slot name="header"></slot>
           </v-toolbar>
         </v-card>
+        <Snackbar />
         <slot></slot>
       </v-container>
     </v-main>
@@ -84,13 +85,22 @@
 </template>
 
 <script>
-import ListLink from "@/components/ListLink";
+import DrawerMenu from "@/components/DrawerMenu";
+import Snackbar from "@/components/Snackbar";
 export default {
   components: {
-    ListLink,
+    DrawerMenu,
+    Snackbar,
   },
   data: () => ({
     drawer: null,
+    dashboard_menu: [
+      {
+        title: "Dashboard",
+        icon: "mdi-speedometer",
+        link: "admin",
+      },
+    ],
     account_menu: [
       {
         title: "Accounts",
@@ -100,7 +110,7 @@ export default {
       {
         title: "Roles",
         icon: "mdi-card-account-details",
-        link: "admin.log",
+        link: "admin.role",
       },
     ],
     system_menu: [

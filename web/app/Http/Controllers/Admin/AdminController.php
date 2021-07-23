@@ -26,7 +26,6 @@ class AdminController extends Controller
             ['name' => 'Cache driver',      'value' => config('cache.default')],
             ['name' => 'Session driver',    'value' => config('session.driver')],
             ['name' => 'Queue driver',      'value' => config('queue.default')],
-
             ['name' => 'Timezone',          'value' => config('app.timezone')],
             ['name' => 'Locale',            'value' => config('app.locale')],
             ['name' => 'Env',               'value' => config('app.env')],
