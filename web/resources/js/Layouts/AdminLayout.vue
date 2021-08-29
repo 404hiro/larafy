@@ -54,7 +54,7 @@
             >
               <v-list-item-title> Admin</v-list-item-title>
             </inertia-link>
-            <inertia-link as="v-list-item" :href="route('profile.show')">
+            <inertia-link as="v-list-item" :href="route('setting.profile')">
               <v-list-item-title> Profile</v-list-item-title>
             </inertia-link>
             <v-list-item @click="logout">

@@ -29,6 +29,7 @@ class UserFactory extends Factory
 
         return [
             'name' => $this->faker->name,
+            'account' => mb_strtolower($this->faker->firstName),
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'uuid' => Str::uuid(),

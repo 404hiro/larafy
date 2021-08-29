@@ -62,11 +62,17 @@
                   >
                 </v-list-item-content>
               </v-list-item>
-              <inertia-link as="v-list-item" :href="route('profile.show')">
-                <v-list-item-title> Profile</v-list-item-title>
+              <inertia-link as="v-list-item" :href="route('home')">
+                <v-list-item-title> ホーム</v-list-item-title>
+              </inertia-link>
+              <inertia-link as="v-list-item" :href="route('setting.profile')">
+                <v-list-item-title> マイページ</v-list-item-title>
+              </inertia-link>
+              <inertia-link as="v-list-item" :href="route('setting.account')">
+                <v-list-item-title> アカウント設定</v-list-item-title>
               </inertia-link>
               <v-list-item @click="logout">
-                <v-list-item-title> Logout </v-list-item-title>
+                <v-list-item-title> ログアウト </v-list-item-title>
               </v-list-item>
             </v-list>
           </v-card>
@@ -81,7 +87,7 @@
         </template>
       </v-container>
     </v-app-bar>
-    <v-main class="grey lighten-3">
+    <v-main class="grey lighten-5">
       <v-container>
         <slot></slot>
       </v-container>

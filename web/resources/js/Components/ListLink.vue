@@ -1,5 +1,5 @@
 <template>
-  <v-list dense nav>
+  <v-list dense nav color="rgba(0,0,255,0)">
     <v-subheader v-if="subheader">{{ subheader }}</v-subheader>
     <v-list-item-group v-model="selectedIndex" color="primary">
       <inertia-link
@@ -15,7 +15,6 @@
         <v-list-item-icon v-if="item.icon">
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
-
         <v-list-item-content>
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
@@ -35,6 +34,7 @@ export default {
       },
     },
   },
+
   methods: {
     getIndex(list) {
       let index = [];

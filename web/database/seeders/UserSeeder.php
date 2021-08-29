@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         $dev = Role::where("title", "開発者")->first();
         User::create([
             'name' => '一般ユーザー',
+            'account' => 'nomal',
             'email' => 'user@example.com',
             'uuid' => Str::uuid(),
             'role_id' => $ippan->id,
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'システム管理者',
             'email' => 'admin@example.com',
+            'account' => "admin",
             'uuid' => Str::uuid(),
             'role_id' => $dev->id,
             'password' => Hash::make('password'),
